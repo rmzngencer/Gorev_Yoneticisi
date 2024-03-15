@@ -22,7 +22,7 @@ namespace Business.Concretes
                 throw new ArgumentNullException(nameof(request));
             }
 
-            if (request.Username == "onur" && request.Password == "123456")
+            if (request.Username == "piton" && request.Password == "123456")
             {
                 var generatedTokenInformation = await tokenService.GenerateToken(new GenerateTokenRequest { Username = request.Username });
 
