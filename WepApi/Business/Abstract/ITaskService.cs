@@ -11,7 +11,8 @@ namespace Business.Abstracts;
 
 public interface ITaskService
 {
+    public Task<List<GetAllTaskResponse>> GetAllAsync();
     CreatedTaskResponse Add(CreateTaskRequest createBrandRequest);
-    List<GetAllTaskResponse> GetAll();
+   
 }
 //responses and requests

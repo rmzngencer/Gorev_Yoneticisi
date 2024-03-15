@@ -30,26 +30,27 @@ public class TasksManager : ITaskService
         task.Title = createTaskRequest.Title;
         task.CreatedDate = DateTime.Now;
         
-        _taskDal.Add(task);
+        _taskDal.AddAsync(task);
 
         //mapping
         CreatedTaskResponse createdBrandResponse = new CreatedTaskResponse();
         createdBrandResponse.Title = task.Title;
-        createdBrandResponse.Id = 4;
+        
         createdBrandResponse.CreatedDate = task.CreatedDate;
 
         return createdBrandResponse;
     }
 
     
-    public List<GetAllTaskResponse> GetAll()
+    public async Task<List<GetAllTaskResponse>> GetAllAsync()
     {
-        List<MyTask> tasks = _taskDal.GetAll();
-
+        List<MyTask> tasks = await _taskDal.GetAllAsync();
+       
         List<GetAllTaskResponse> getAllTaskResponses = new List<GetAllTaskResponse>();
 
         foreach (var task in tasks)
         {
+            Console.WriteLine(task.Title);
             GetAllTaskResponse getAllTaskResponse = new GetAllTaskResponse();
             getAllTaskResponse.Title = task.Title;
             getAllTaskResponse.Id = task.Id;
