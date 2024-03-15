@@ -4,6 +4,7 @@ using Business.Dtos.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
@@ -19,6 +20,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(CreateTaskRequest createTaskRequest)
         {
            CreatedTaskResponse createdTaskResponse =  _taskService.Add(createTaskRequest);
@@ -27,6 +29,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             return Ok(_taskService.GetAll());
