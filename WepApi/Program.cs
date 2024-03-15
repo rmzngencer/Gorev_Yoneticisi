@@ -3,6 +3,7 @@ using Business.Abstracts;
 using Business.Concretes;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
+using DataAccess.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -10,6 +11,8 @@ using Microsoft.OpenApi.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<mongoDBSettings>(
+    builder.Configuration.GetSection("MongoDatabase"));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -41,11 +44,11 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
+builder.Services.AddSingleton<ITaskDal, TaskDal>();
 builder.Services.AddScoped<ITokenService, TokenManager>();
 builder.Services.AddTransient<IAuthService, AuthManager>();
 builder.Services.AddSingleton<ITaskService,TasksManager>();
-builder.Services.AddSingleton<ITaskDal, TaskDal>();
+
 
 
 builder.Services.AddAuthentication(options =>

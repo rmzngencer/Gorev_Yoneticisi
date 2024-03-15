@@ -10,7 +10,8 @@ namespace DataAccess.Abstracts;
 
 public interface ITaskDal
 {
-    void Add(MyTask task);
-    List<MyTask> GetAll();
+    public Task AddAsync(MyTask task);
+    
+    public Task<List<MyTask>> GetAllAsync();
 }
 

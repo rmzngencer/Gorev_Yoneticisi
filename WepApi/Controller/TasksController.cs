@@ -32,7 +32,7 @@ namespace WebApi.Controllers
         [Authorize]
         public IActionResult Get()
         {
-            return Ok(_taskService.GetAll());
+            return Ok(_taskService.GetAllAsync());
         }
     }
 }
