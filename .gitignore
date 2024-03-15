@@ -1,0 +1,5 @@
+# .gitignore dosyası
+
+# Bin ve Obj klasörlerini ignore et
+bin/
+obj/
